@@ -1,5 +1,7 @@
 # CD8+T cell_melanocyte_density_cloud
 
+[![Reproducibility checks](https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud/actions/workflows/ci.yml/badge.svg)](https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud/actions/workflows/ci.yml)
+
 This repository contains `density_cloud.py`, the portable version of the original script `CD8+T_melanocyte_density_cloud_vector.py`. It visualizes the numbers of CD8+ T cells and melanocytes per scan view as two-dimensional kernel density estimate (KDE) clouds overlaid with scatter points.
 
 Each point represents one paired observation: the horizontal coordinate is the CD8+ T-cell count and the vertical coordinate is the melanocyte count. The supplied research example contains **7 paired counts in one group**, displayed in dark green. The legacy two-group input additionally uses light green for its second group; these colors distinguish groups of paired observations.
@@ -7,6 +9,18 @@ Each point represents one paired observation: the horizontal coordinate is the C
 The script exports PDF and PNG figures and also provides SVG output. The default PNG resolution is 300 dpi; PDF and SVG preserve vector contours and points.
 
 ![Density cloud generated from the supplied research observations](docs/images/density_cloud_demo.png)
+
+## Contents
+
+- [System requirements](#1-system-requirements)
+- [Installation guide](#2-installation-guide)
+- [Demo](#3-demo)
+- [Instructions for use](#4-instructions-for-use)
+- [Repository contents](#repository-contents)
+- [Troubleshooting and support](#troubleshooting-and-support)
+- [Data dictionary](docs/data.md)
+- [Reproduction record](docs/validation.md)
+- [Academic citation](#academic-citation)
 
 ## 1. System requirements
 
@@ -53,7 +67,7 @@ python3 -m venv .venv
 
 Use `.venv/bin/python` in place of `.venv\Scripts\python.exe` in the following commands.
 
-**Installation time:** allow approximately 2–5 minutes with a working internet connection. This is a planning estimate; a clean installation was not timed, and package download speed can change it substantially.
+**Measured installation:** creating a new Windows virtual environment took 3.4 seconds, and installing dependencies took 39.9 seconds in one run. Some wheels were cached; network speed and cache state affect these times. See the [reproduction record](docs/validation.md) for details.
 
 ## 3. Demo
 
@@ -137,6 +151,35 @@ To reproduce the repository preview, run the research demo with the pinned depen
 
 The checks use Python's built-in `unittest`; `pytest` is not required.
 
+## Repository contents
+
+| Path | Purpose |
+| --- | --- |
+| `density_cloud.py` | Plotting command-line script |
+| `examples/` | Research workbook and separate historical examples |
+| `docs/data.md` | Data fields, provenance and interpretation limits |
+| `docs/validation.md` | Independent installation/test record |
+| `tests/` | Input-validation and complete-output checks |
+| `.github/workflows/ci.yml` | Automated tests and demo generation |
+| `requirements.txt` | Pinned direct dependencies |
+| `requirements-windows-py313.lock.txt` | Complete tested Windows environment |
+| `CITATION.cff` | Software citation |
+| `CHANGELOG.md` | Version history |
+
+## Troubleshooting and support
+
+- **Wrong input:** check paths, Excel layout and exact column headers. Use `--sheet` to select a worksheet by name.
+- **Missing/non-numeric values:** provide both values per row. Recalculate and save Excel formulas so cached numeric results exist.
+- **Cannot write outputs:** close files held open by other applications, or choose a writable `--output-dir`.
+- **Installation errors:** select Python 3.13 and install this repository's requirements. See the [tested environment](docs/validation.md).
+- **Plot/input constraints:** A group needs at least three non-collinear points for KDE; counts must be inside x = 0–600 and y = 0–500.
+
+Use [GitHub Issues](https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud/issues) to report reproducible problems; see [CONTRIBUTING.md](CONTRIBUTING.md). Known data fields and scientific context still needed from the authors are described in [docs/data.md](docs/data.md).
+
+## Version and validation
+
+Current software version: **1.0.0**. See [CHANGELOG.md](CHANGELOG.md) and [Releases](https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud/releases) for fixed versions. Local clean-environment checks passed. The badge above links to automated checks; consult each platform job for actual passing results.
+
 ## Authors
 
 Project creators and lead maintainers:
@@ -150,8 +193,12 @@ We would like to thank Shuo Yang for his assistance with this project.
 
 ## Academic citation
 
-Academic citation information for this code will be added here when available.
+Please cite the software using [CITATION.cff](CITATION.cff), or GitHub's **Cite this repository** panel:
+
+Li, C., & Wang, Y. (2026). *CD8+ T-cell and melanocyte density cloud* (Version 1.0.0) [Computer software]. https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud
+
+The associated research-paper citation has not yet been supplied; no article DOI is assumed.
 
 ## License
 
-No license has been selected. Add an appropriate license if you intend to grant reuse rights.
+The project contact has confirmed permission to reuse the code and data. The authors have not yet specified a named license or its scope, so no standard license file has been selected. This statement does not assign additional license terms; formal licensing will be added after author confirmation.

@@ -1,0 +1,16 @@
+# Complete Windows / Python 3.13.9 environment verified on 2026-10-21.
+# Optional local snapshot; use requirements.txt for cross-platform installation.
+contourpy==1.4.0
+cycler==0.12.1
+et_xmlfile==2.0.0
+fonttools==4.67.0
+kiwisolver==1.5.1
+matplotlib==3.10.6
+numpy==2.3.5
+openpyxl==3.1.5
+packaging==26.3
+pillow==13.0.0
+pyparsing==3.3.3
+python-dateutil==2.9.0.post0
+scipy==1.16.3
+six==1.17.0
