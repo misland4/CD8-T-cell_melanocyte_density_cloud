@@ -1,6 +1,10 @@
-# CD8+ T-cell and melanocyte density cloud
+# CD8+T cell_melanocyte_density_cloud
 
-Python scripts for visualizing CD8+ T-cell and melanocyte counts per scan view as a two-dimensional kernel density cloud. The supplied research example contains **7 paired counts in one group**.
+This repository contains `density_cloud.py`, the portable version of the original script `CD8+T_melanocyte_density_cloud_vector.py`. It visualizes the numbers of CD8+ T cells and melanocytes per scan view as two-dimensional kernel density estimate (KDE) clouds overlaid with scatter points.
+
+Each point represents one paired observation: the horizontal coordinate is the CD8+ T-cell count and the vertical coordinate is the melanocyte count. The supplied research example contains **7 paired counts in one group**, displayed in dark green. The legacy two-group input additionally uses light green for its second group; these colors distinguish groups of paired observations.
+
+The script exports PDF and PNG figures and also provides SVG output. The default PNG resolution is 300 dpi; PDF and SVG preserve vector contours and points.
 
 ![Density cloud generated from the supplied research observations](docs/images/density_cloud_demo.png)
 
@@ -17,7 +21,11 @@ Use **Python 3.13**. The exact tested dependencies are pinned in `requirements.t
 | Matplotlib | 3.10.6 |
 | openpyxl | 3.1.5 |
 
-The verified environment is **Windows 11 Pro, Python 3.13.9**. Other operating systems and Python versions have not been tested for this release. The macOS/Linux command variants below are provided for convenience.
+### Methodology version and verified environment
+
+The supplied original methodology notes specify **Python 3.14**. This repository's reproduction checks were performed with **Windows 11 Pro, Python 3.13.9** and the package versions listed above. The Python 3.14 and macOS test environments described in the notes have not been independently verified during this repository preparation.
+
+The script uses portable Python libraries and includes command variants for Windows, macOS, and Linux. Only the Windows environment above has been tested for this release.
 
 ### Hardware
 
