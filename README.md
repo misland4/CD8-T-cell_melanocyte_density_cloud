@@ -4,11 +4,11 @@
 
 This repository contains `density_cloud.py`, the portable version of the original script `CD8+T_melanocyte_density_cloud_vector.py`. It visualizes the numbers of CD8+ T cells and melanocytes per scan view as two-dimensional kernel density estimate (KDE) clouds overlaid with scatter points.
 
-Each point represents one paired observation: the horizontal coordinate is the CD8+ T-cell count and the vertical coordinate is the melanocyte count. The supplied research example contains **7 paired counts in one group**, displayed in dark green. The legacy two-group input additionally uses light green for its second group; these colors distinguish groups of paired observations.
+Each point represents one paired observation: the horizontal coordinate is the CD8+ T-cell count and the vertical coordinate is the melanocyte count. The supplied **simulated example** contains **7 paired counts in one group**, displayed in dark green. Each row represents one scan view from one of seven biological samples, with no repeated fields from the same sample in this example. The legacy two-group input additionally uses light green for its second group; these colors distinguish groups of paired observations.
 
 The script exports PDF and PNG figures and also provides SVG output. The default PNG resolution is 300 dpi; PDF and SVG preserve vector contours and points.
 
-![Density cloud generated from the supplied research observations](docs/images/density_cloud_demo.png)
+![Density cloud generated from the supplied simulated example](docs/images/density_cloud_demo.png)
 
 ## Contents
 
@@ -37,9 +37,9 @@ Use **Python 3.13**. The exact tested dependencies are pinned in `requirements.t
 
 ### Methodology version and verified environment
 
-The supplied original methodology notes specify **Python 3.14**. This repository's reproduction checks were performed with **Windows 11 Pro, Python 3.13.9** and the package versions listed above. The Python 3.14 and macOS test environments described in the notes have not been independently verified during this repository preparation.
+The authors have confirmed **Windows 11 and Python 3.13.9** as the final manuscript-method environment. The locally verified setup is **Windows 11 Pro, Python 3.13.9** with the package versions listed above. This replaces the earlier Python 3.14 note.
 
-In addition to the local Windows check, automated installation, all tests and research-demo generation have passed on GitHub-hosted Windows, Ubuntu and macOS runners using Python 3.13. The logs record each runner's exact operating-system and Python patch versions; see the [reproduction record](docs/validation.md). The original notes' Python 3.14 and macOS Sonoma 14 environment claims remain separate from those CI checks.
+Automated installation, all tests and demo generation have also passed on GitHub-hosted Windows, Ubuntu and macOS runners using Python 3.13. The logs record each runner's actual operating-system and Python patch versions; see the [reproduction record](docs/validation.md).
 
 ### Hardware
 
@@ -71,7 +71,7 @@ Use `.venv/bin/python` in place of `.venv\Scripts\python.exe` in the following c
 
 ## 3. Demo
 
-### Research example
+### Supplied example
 
 From the repository root, run:
 
@@ -89,13 +89,21 @@ output\density_cloud.svg
 
 The PNG is saved at 300 dpi. PDF and SVG retain vector contours and points. The preview above is generated from this workbook and plots exactly seven observations in a single dark green cloud. Output files with the same names are overwritten on subsequent runs.
 
-**Measured runtime:** about **1.4 seconds** for the research example and all three output formats in one run on the test desktop, with dependencies already installed. This is a single-run observation, not a benchmark across machines.
+**Measured runtime:** about **1.4 seconds** for the supplied example and all three output formats in one run on the test desktop, with dependencies already installed. This is a single-run observation, not a benchmark across machines.
 
 ### Data provenance
 
-[Download the included research workbook](examples/research_density.xlsx). It is a byte-for-byte copy of the supplied `Simulated dataset to demo the code.xlsx`, with a simpler repository filename. The dataset provider confirmed that these are **real research observations**. The original worksheet name, `Simulated dataset`, is retained; the wording in that source name does not reflect the provider's confirmation.
+[Download the supplied simulated workbook](examples/research_density.xlsx). The author confirms that these seven rows are **simulated demonstration data**, representing seven biological samples with one imaging field per sample. They are not presented as actual measured study observations.
 
-The source workbook is not rewritten. The script reads `B2:C8` from that worksheet and preserves all seven numeric pairs and their order. No second group is inferred or generated.
+The historical repository filename `research_density.xlsx` is retained for compatibility; it does not describe the dataset's provenance. The workbook is a byte-for-byte copy of the supplied `Simulated dataset to demo the code.xlsx`, and its original worksheet name, `Simulated dataset`, is unchanged. The script reads `B2:C8`, preserving all seven pairs and their order. No second group is inferred or generated.
+
+### Author-provided imaging and counting method
+
+The authors describe the related imaging workflow as follows:
+
+> Images were acquired via a 10/20 × 0.5 objective lens for quantitative analysis. Z-stacks were captured at a resolution of 512 × 512 pixels and are presented as maximum intensity projections. The numbers of melanocytes and CD8+ T cells per sample were quantified using the “Analyze Particles” function in ImageJ.
+
+This is the author-provided method description. The included numerical workbook is simulated. See [docs/data.md](docs/data.md) for the data dictionary and publication-dependent study context.
 
 ## 4. Instructions for use
 
@@ -127,7 +135,7 @@ The original two-group layout remains supported when the preferred B1/C1 headers
 | D17:E23 | First group: CD8+ T-cell counts / melanocyte counts |
 | D24:E30 | Second group: CD8+ T-cell counts / melanocyte counts |
 
-`examples/synthetic_density.xlsx` is the earlier, explicitly synthetic example of that legacy layout. It is separate from the supplied research workbook:
+`examples/synthetic_density.xlsx` is the earlier, explicitly synthetic example of that legacy layout. It is separate from the supplied workbook:
 
 ```powershell
 .venv\Scripts\python.exe density_cloud.py --input examples/synthetic_density.xlsx --output-dir output_synthetic
@@ -137,11 +145,11 @@ The original two-group layout remains supported when the preferred B1/C1 headers
 
 - x axis: **No. of CD8+ T cells per scan view**; range 0–600.
 - y axis: **No. of melanocytes per scan view**; range 0–500.
-- The single research group uses the original dark green color and KDE bandwidth 0.58. The optional legacy second group uses light green and bandwidth 0.64.
+- The single supplied group uses the original dark green color and KDE bandwidth 0.58. The optional legacy second group uses light green and bandwidth 0.64.
 - Each cloud is normalized to its own maximum and uses a cutoff of 0.04. Intensity shows within-group relative density rather than comparable absolute density between groups.
 - Counts outside the original axis ranges are rejected so observations cannot disappear silently. Adjust the ranges and KDE grid in the code if larger limits are needed.
 
-To reproduce the repository preview, run the research demo with the pinned dependencies. No random values are added to the data.
+To reproduce the repository preview, run the supplied demo with the pinned dependencies. No random values are added to the data.
 
 ### Checks
 
@@ -156,7 +164,7 @@ The checks use Python's built-in `unittest`; `pytest` is not required.
 | Path | Purpose |
 | --- | --- |
 | `density_cloud.py` | Plotting command-line script |
-| `examples/` | Research workbook and separate historical examples |
+| `examples/` | Supplied workbook and separate historical examples |
 | `docs/data.md` | Data fields, provenance and interpretation limits |
 | `docs/validation.md` | Independent installation/test record |
 | `tests/` | Input-validation and complete-output checks |
@@ -165,6 +173,7 @@ The checks use Python's built-in `unittest`; `pytest` is not required.
 | `requirements-windows-py313.lock.txt` | Complete tested Windows environment |
 | `CITATION.cff` | Software citation |
 | `CHANGELOG.md` | Version history |
+| `LICENSE` / `LICENSES.md` | Code license and data/figure license scopes |
 
 ## Troubleshooting and support
 
@@ -174,11 +183,11 @@ The checks use Python's built-in `unittest`; `pytest` is not required.
 - **Installation errors:** select Python 3.13 and install this repository's requirements. See the [tested environment](docs/validation.md).
 - **Plot/input constraints:** A group needs at least three non-collinear points for KDE; counts must be inside x = 0–600 and y = 0–500.
 
-Use [GitHub Issues](https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud/issues) to report reproducible problems; see [CONTRIBUTING.md](CONTRIBUTING.md). Known data fields and scientific context still needed from the authors are described in [docs/data.md](docs/data.md).
+Use [GitHub Issues](https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud/issues) to report reproducible problems; see [CONTRIBUTING.md](CONTRIBUTING.md). Confirmed data fields and scientific context deferred until publication are described in [docs/data.md](docs/data.md).
 
 ## Version and validation
 
-Current software version: **1.0.0**. See [CHANGELOG.md](CHANGELOG.md) and [Releases](https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud/releases) for fixed versions. Local clean-environment checks passed. The badge above links to automated checks; consult each platform job for actual passing results.
+Current software version: **1.0.1**. See [CHANGELOG.md](CHANGELOG.md) and [Releases](https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud/releases) for fixed versions. Local clean-environment checks passed. The badge above links to automated checks; consult each platform job for actual passing results.
 
 ## Authors
 
@@ -195,10 +204,14 @@ We would like to thank Shuo Yang for his assistance with this project.
 
 Please cite the software using [CITATION.cff](CITATION.cff), or GitHub's **Cite this repository** panel:
 
-Li, C., & Wang, Y. (2026). *CD8+ T-cell and melanocyte density cloud* (Version 1.0.0) [Computer software]. https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud
+Li, C., & Wang, Y. (2026). *CD8+ T-cell and melanocyte density cloud* (Version 1.0.1) [Computer software]. https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud
 
-The associated research-paper citation has not yet been supplied; no article DOI is assumed.
+The manuscript is **unpublished**. The authors request that users cite this code repository. Study details and the paper citation will be updated upon publication.
 
 ## License
 
-The project contact has confirmed permission to reuse the code and data. The authors have not yet specified a named license or its scope, so no standard license file has been selected. This statement does not assign additional license terms; formal licensing will be added after author confirmation.
+The authors have selected **Apache License 2.0** for the code and **Creative Commons Attribution 4.0 International (CC BY 4.0)** for the supplied Excel dataset and figures exported by the code, including the README preview.
+
+See [LICENSE](LICENSE) for the code license, [the CC BY 4.0 legal text](LICENSES/CC-BY-4.0.txt) for the data/figure license, and [LICENSES.md](LICENSES.md) for file scopes and attribution details. Cite Chunying Li and Yinghan Wang, identify this repository and the version used, link the applicable license, and indicate any changes when reusing the dataset or figures under CC BY 4.0.
+
+These licenses cover the repository's supplied materials; users applying the scripts to other inputs must have permission to use those inputs.

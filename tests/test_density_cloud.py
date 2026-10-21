@@ -69,7 +69,7 @@ class DensityCloudTests(unittest.TestCase):
             self.assertEqual(result.returncode, 2, result.stderr)
             self.assertNotIn("Traceback", result.stderr)
 
-    def test_single_group_research_workbook_produces_three_formats(self):
+    def test_single_group_supplied_workbook_produces_three_formats(self):
         with tempfile.TemporaryDirectory() as tmp:
             folder = Path(tmp)
             result = subprocess.run(

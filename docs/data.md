@@ -1,34 +1,44 @@
-# Research data dictionary
+# Data dictionary and author-confirmed methods
 
 ## Source and provenance
 
-The project contact confirmed that `examples/research_density.xlsx` contains real research observations and that reuse is permitted. A named data license and its detailed scope have not yet been specified by the authors.
+The author confirms that the seven-row example is **simulated demonstration data**. It represents seven biological samples, with one imaging field of view per sample and no repeated fields from the same sample. This describes the example's intended structure, rather than seven measured study observations or seven confirmed human subjects.
 
-The workbook is a byte-for-byte copy of the supplied `Simulated dataset to demo the code.xlsx`; the original worksheet name `Simulated dataset` is retained. The historical source name is not used to classify the observations as synthetic.
+`examples/research_density.xlsx` is a byte-for-byte copy of the supplied `Simulated dataset to demo the code.xlsx`. The historical repository filename is retained for compatibility and does not imply real observations. The original worksheet name `Simulated dataset` is unchanged. This author clarification supersedes the earlier real-data wording in version 1.0.0.
 
 - Source SHA-256: `248baa3371a525ef44e21161619536eaa1adfc047cfafd1316dd6b8d48035b8a`.
 - Worksheet: `Simulated dataset`.
-- Data range: B2:C8, seven paired observations in one group.
+- Data range: B2:C8, seven paired counts in one group.
+- Data and exported figures: [CC BY 4.0](../LICENSES.md).
 
 ## Fields and interpretation
 
-| Field | Excel location | Meaning used by the code | Recorded unit |
+| Field | Excel location | Meaning | Unit |
 | --- | --- | --- | --- |
-| CD8+ T cells | B1 header; B2:B8 values | Horizontal coordinate | Cell count per scan view, following the requested axis label |
-| Melanocyte | C1 header; C2:C8 values | Vertical coordinate | Cell count per scan view, following the requested axis label |
-| Observation ID | Not present | Input row order only | No subject identifier is inferred |
-| Group | Not present | All seven rows are plotted together | One supplied group; no biological group name was supplied |
+| CD8+ T cells | B1 header; B2:B8 values | Horizontal coordinate | Cell count per scan view |
+| Melanocyte | C1 header; C2:C8 values | Vertical coordinate | Cell count per scan view |
+| Observation ID | Not present | Input row order only | One represented field/sample per row; no supplied subject ID |
+| Group | Not present | All seven rows plotted together | One supplied group; no biological group name supplied |
 
-Column A is unused. Both values in a row are read together. The workbook does not state whether different rows belong to different subjects or multiple scan views from the same sample. Seven observations must therefore not be described as seven independent subjects without author information.
+Column A is unused. Both cell counts from the same field are read together. CD8+ T-cell values range from 33 to 549 and melanocyte values from 7 to 432. These describe the included simulated values, not inclusion criteria or estimated population ranges.
 
-The observed CD8+ T-cell counts range from 33 to 549, and the melanocyte counts range from 7 to 432. These are descriptions of the supplied cells, not additional inclusion criteria.
+Confirmed axis labels:
+
+- x: **No. of CD8+ T cells per scan view**.
+- y: **No. of melanocytes per scan view**.
+
+## Author-provided imaging/counting method
+
+> Images were acquired via a 10/20 × 0.5 objective lens for quantitative analysis. Z-stacks were captured at a resolution of 512 × 512 pixels and are presented as maximum intensity projections. The numbers of melanocytes and CD8+ T cells per sample were quantified using the “Analyze Particles” function in ImageJ.
+
+The objective notation is reproduced as supplied. This related imaging-method description does not change the simulated status of the included numerical workbook. The plotting script takes existing cell counts as input; it does not process images or run ImageJ.
 
 ## Display calculations
 
-The plot is a two-dimensional joint KDE of the two cell counts with scatter points. The single research group uses dark green and bandwidth 0.58; color does not identify one cell type. Density is divided by its own maximum and values below 0.04 are masked. The script does not perform a hypothesis test, estimate subject-level independence or add observations.
+The plot is a two-dimensional joint KDE over the two cell counts, overlaid with scatter points. The single supplied group uses dark green and bandwidth 0.58; color identifies the plotted group rather than a cell type. Density is divided by its own maximum and values below 0.04 are masked. The authors confirm the current bandwidth and do not require these display details in the paper's methods. The script performs no significance test and adds no observations.
 
-## Research context awaiting author information
+## Study context deferred until publication
 
-The supplied files do not specify the study/sample population, biological group name, number of subjects, scan-view area/magnification, cell-identification method or associated paper/figure. These fields will be added from the authors' description; they are not inferred from the numerical values.
+The authors will update study background, source description and the corresponding paper/figure upon publication. A biological group name, physical field area and definitions of the objective notation have not been supplied. The manuscript is unpublished; cite the software repository in the meantime.
 
-`examples/synthetic_density.xlsx` is a separate, explicitly synthetic legacy example. It is not combined with the research workbook.
+`examples/synthetic_density.xlsx` is a separate, manually specified 14-pair legacy fixture with two color groups. It is not combined with the author-provided seven-row example.

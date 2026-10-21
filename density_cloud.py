@@ -1,4 +1,4 @@
-"""Plot CD8+ T-cell / melanocyte counts from a research or legacy Excel sheet.
+"""Plot CD8+ T-cell / melanocyte counts from a supplied or legacy Excel sheet.
 
 Authors: Chunying Li <lichying@fmmu.edu.cn>, Yinghan Wang <wang.yinghan@qq.com>
 Credits: Shuo Yang
