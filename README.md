@@ -39,7 +39,7 @@ Use **Python 3.13**. The exact tested dependencies are pinned in `requirements.t
 
 The supplied original methodology notes specify **Python 3.14**. This repository's reproduction checks were performed with **Windows 11 Pro, Python 3.13.9** and the package versions listed above. The Python 3.14 and macOS test environments described in the notes have not been independently verified during this repository preparation.
 
-The script uses portable Python libraries and includes command variants for Windows, macOS, and Linux. Only the Windows environment above has been tested for this release.
+In addition to the local Windows check, automated installation, all tests and research-demo generation have passed on GitHub-hosted Windows, Ubuntu and macOS runners using Python 3.13. The logs record each runner's exact operating-system and Python patch versions; see the [reproduction record](docs/validation.md). The original notes' Python 3.14 and macOS Sonoma 14 environment claims remain separate from those CI checks.
 
 ### Hardware
 
