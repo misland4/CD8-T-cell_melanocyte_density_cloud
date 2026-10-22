@@ -2,11 +2,13 @@
 
 ## Author-supplied simulated example
 
-`research_density.xlsx` is an unmodified copy of the supplied `Simulated dataset to demo the code.xlsx`. The author confirms that it is **simulated demonstration data**, representing seven biological samples with one imaging field per sample and no repeated fields. The historical repository filename is retained for compatibility. The original worksheet name `Simulated dataset` is unchanged.
+`research_density.xlsx` is a copy of the supplied `Simulated dataset to demo the code.xlsx`. The author confirms that it is **simulated demonstration data**, representing seven biological samples with one imaging field per sample and no repeated fields. The historical repository filename is retained for compatibility. The original worksheet name `Simulated dataset` is unchanged.
 
 Column B contains CD8+ T-cell counts and column C melanocyte counts. Row 1 contains headers; rows 2–8 contain seven pairs in one group. This workbook generates the main README preview. The workbook and exported figures use [CC BY 4.0](../LICENSES.md).
 
-Source SHA-256: `248baa3371a525ef44e21161619536eaa1adfc047cfafd1316dd6b8d48035b8a`.
+Original source SHA-256 (before removing author properties): `248baa3371a525ef44e21161619536eaa1adfc047cfafd1316dd6b8d48035b8a`.
+
+Repository workbook SHA-256 after removing creator/last-modified-by properties: `46ef4c5f9557f8bd58071c73d61ea0b2cc16fe08e06a858dee89ec5231dabd5e`. Only `docProps/core.xml` changed; all cells, styles, worksheets and other workbook entries are byte-identical to the source.
 
 ## Earlier synthetic fixture
 

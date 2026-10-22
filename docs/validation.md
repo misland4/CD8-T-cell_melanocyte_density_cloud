@@ -58,4 +58,10 @@ These are hosted-runner results rather than tests on every version of each opera
 
 ## Version 1.0.1 local recheck
 
-On 2026-10-21 the existing isolated Windows 11 / Python 3.13.9 environment was reused. `pip check` passed and all 5 tests passed. The supplied workbook exported PNG, PDF and SVG. The original workbook SHA-256 still matches [the data dictionary](data.md); requirements and numerical inputs are unchanged. No new dependency-installation timing is claimed.
+On 2026-10-21 the existing isolated Windows 11 / Python 3.13.9 environment was reused. `pip check` passed and all 5 tests passed. The supplied workbook exported PNG, PDF and SVG. At that check, the original workbook SHA-256 matched [the data dictionary](data.md); requirements and numerical inputs are unchanged. No new dependency-installation timing is claimed.
+
+## Version 1.0.3 author-information update
+
+On 2026-10-22 the repository workbook's creator and last-modified-by properties were removed. Entry-by-entry comparison against the preceding version confirms that only `docProps/core.xml` changed. All worksheet data, formatting and other workbook entries are identical. Original-source and current-file SHA-256 values are recorded in [data.md](data.md). Only the plotting script's introductory documentation changed; the plotting implementation and dependencies are unchanged.
+
+The complete local suite was rerun for this update: 5 tests passed, including PNG/PDF/SVG generation from the supplied workbook. Syntax-tree comparison confirms the Python code changed only in its introductory docstring.

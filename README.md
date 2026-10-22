@@ -95,7 +95,7 @@ The PNG is saved at 300 dpi. PDF and SVG retain vector contours and points. The 
 
 [Download the supplied simulated workbook](examples/research_density.xlsx). The author confirms that these seven rows are **simulated demonstration data**, representing seven biological samples with one imaging field per sample. They are not presented as actual measured study observations.
 
-The historical repository filename `research_density.xlsx` is retained for compatibility; it does not describe the dataset's provenance. The workbook is a byte-for-byte copy of the supplied `Simulated dataset to demo the code.xlsx`, and its original worksheet name, `Simulated dataset`, is unchanged. The script reads `B2:C8`, preserving all seven pairs and their order. No second group is inferred or generated.
+The historical repository filename `research_density.xlsx` is retained for compatibility; it does not describe the dataset's provenance. The workbook is a copy of the supplied `Simulated dataset to demo the code.xlsx`, and its original worksheet name, `Simulated dataset`, is unchanged. The script reads `B2:C8`, preserving all seven pairs and their order. No second group is inferred or generated.
 
 ### Author-provided imaging and counting method
 
@@ -104,6 +104,8 @@ The authors describe the related imaging workflow as follows:
 > Images were acquired via a 10/20 × 0.5 objective lens for quantitative analysis. Z-stacks were captured at a resolution of 512 × 512 pixels and are presented as maximum intensity projections. The numbers of melanocytes and CD8+ T cells per sample were quantified using the “Analyze Particles” function in ImageJ.
 
 This is the author-provided method description. The included numerical workbook is simulated. See [docs/data.md](docs/data.md) for the data dictionary and publication-dependent study context.
+
+The repository workbook has its creator and last-modified-by properties removed. All other workbook entries, including cells, styles and sheet names, are unchanged. See [docs/data.md](docs/data.md) for the updated file hash.
 
 ## 4. Instructions for use
 
@@ -171,7 +173,7 @@ The checks use Python's built-in `unittest`; `pytest` is not required.
 | `.github/workflows/ci.yml` | Automated tests and demo generation |
 | `requirements.txt` | Pinned direct dependencies |
 | `requirements-windows-py313.lock.txt` | Complete tested Windows environment |
-| `CITATION.cff` | Software citation |
+| `CITATION.md` | Software citation |
 | `CHANGELOG.md` | Version history |
 | `LICENSE` / `LICENSES.md` | Code license and data/figure license scopes |
 
@@ -187,31 +189,24 @@ Use [GitHub Issues](https://github.com/misland4/CD8-T-cell_melanocyte_density_cl
 
 ## Version and validation
 
-Current software version: **1.0.1**. See [CHANGELOG.md](CHANGELOG.md) and [Releases](https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud/releases) for fixed versions. Local clean-environment checks passed. The badge above links to automated checks; consult each platform job for actual passing results.
+Current software version: **1.0.3**. See [CHANGELOG.md](CHANGELOG.md) and [Releases](https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud/releases) for fixed versions. Local clean-environment checks passed. The badge above links to automated checks; consult each platform job for actual passing results.
 
 ## Authors
 
-Project creators and lead maintainers:
-
-- Chunying Li, Email: <lichying@fmmu.edu.cn>
-- Yinghan Wang, Email: <wang.yinghan@qq.com>
-
-## Credits
-
-We would like to thank Shuo Yang for his assistance with this project.
+Author information will be updated upon publication of the paper.
 
 ## Academic citation
 
-Please cite the software using [CITATION.cff](CITATION.cff), or GitHub's **Cite this repository** panel:
+Until publication, cite this repository by its project title, version and URL. See [CITATION.md](CITATION.md) for the interim citation:
 
-Li, C., & Wang, Y. (2026). *CD8+ T-cell and melanocyte density cloud* (Version 1.0.1) [Computer software]. https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud
+*CD8+ T-cell and melanocyte density cloud* (Version 1.0.3) [Computer software]. https://github.com/misland4/CD8-T-cell_melanocyte_density_cloud
 
-The manuscript is **unpublished**. The authors request that users cite this code repository. Study details and the paper citation will be updated upon publication.
+The manuscript is unpublished. Author information will be updated upon publication of the paper.
 
 ## License
 
 The authors have selected **Apache License 2.0** for the code and **Creative Commons Attribution 4.0 International (CC BY 4.0)** for the supplied Excel dataset and figures exported by the code, including the README preview.
 
-See [LICENSE](LICENSE) for the code license, [the CC BY 4.0 legal text](LICENSES/CC-BY-4.0.txt) for the data/figure license, and [LICENSES.md](LICENSES.md) for file scopes and attribution details. Cite Chunying Li and Yinghan Wang, identify this repository and the version used, link the applicable license, and indicate any changes when reusing the dataset or figures under CC BY 4.0.
+See [LICENSE](LICENSE) for the code license, [the CC BY 4.0 legal text](LICENSES/CC-BY-4.0.txt) for the data/figure license, and [LICENSES.md](LICENSES.md) for file scopes and attribution details. Identify the project title, this repository and the version used, link the applicable license, and indicate any changes when reusing the dataset or figures under CC BY 4.0.
 
 These licenses cover the repository's supplied materials; users applying the scripts to other inputs must have permission to use those inputs.

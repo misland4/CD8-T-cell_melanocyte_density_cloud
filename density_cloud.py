@@ -1,7 +1,6 @@
 """Plot CD8+ T-cell / melanocyte counts from a supplied or legacy Excel sheet.
 
-Authors: Chunying Li <lichying@fmmu.edu.cn>, Yinghan Wang <wang.yinghan@qq.com>
-Credits: Shuo Yang
+Author information will be updated upon publication of the paper.
 """
 import argparse
 from pathlib import Path
